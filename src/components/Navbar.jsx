@@ -1,40 +1,51 @@
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+function Navbar() {
   return (
-    <nav
-      style={{
-        backgroundColor: "#1e3a8a",
-        padding: "15px 30px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }}
-    >
-      <h2 style={{ color: "white", margin: 0 }}>UniNest</h2>
+    <nav style={styles.nav}>
+      <h2 style={styles.logo}>UniNest</h2>
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        <Link
-          to="/"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+      <div style={styles.links}>
+        <Link to="/" style={styles.link}>
           Home
         </Link>
 
-        <Link
-          to="/listings"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+        <Link to="/listings" style={styles.link}>
           Listings
         </Link>
 
-        <Link
-          to="/about"
-          style={{ color: "white", textDecoration: "none" }}
-        >
+        <Link to="/about" style={styles.link}>
           About
         </Link>
       </div>
     </nav>
   );
 }
+
+const styles = {
+  nav: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "15px 40px",
+    backgroundColor: "#1e3a8a",
+    color: "white",
+  },
+
+  logo: {
+    margin: 0,
+  },
+
+  links: {
+    display: "flex",
+    gap: "20px",
+  },
+
+  link: {
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "bold",
+  },
+};
+
+export default Navbar;

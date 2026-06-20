@@ -1,50 +1,146 @@
-export default function Listings() {
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+function Listings() {
+  const [search, setSearch] = useState("");
+  const [wifiFilter, setWifiFilter] = useState(false);
+
   const rooms = [
     {
       name: "Sunrise Hostel",
       price: "Ksh 8,000/month",
       location: "Kileleshwa",
-      wifi: true
+      wifi: true,
     },
     {
       name: "Campus View Bedsitter",
       price: "Ksh 12,000/month",
       location: "Kilimani",
-      wifi: true
+      wifi: true,
     },
     {
       name: "Green Haven Rooms",
       price: "Ksh 6,500/month",
       location: "Ngara",
-      wifi: false
-    }
+      wifi: false,
+    },
+    {
+      name: "Royal Student Homes",
+      price: "Ksh 10,000/month",
+      location: "Westlands",
+      wifi: true,
+    },
   ];
 
-  return (
-    <div style={{ padding: "30px", backgroundColor: "#f5f7fb", minHeight: "100vh" }}>
-      <h1>Available Listings</h1>
+  const filteredRooms = rooms.filter((room) => {
+    const matchesSearch =
+      room.name.toLowerCase().includes(search.toLowerCase()) ||
+      room.location.toLowerCase().includes(search.toLowerCase());
 
-      <div style={{ display: "flex", gap: "25px", flexWrap: "wrap" }}>
-        {rooms.map((room, index) => (
-          <div
-            key={index}
-            style={{
-              border: "1px solid #ddd",
-              padding: "20px",
-              width: "220px",
-              borderRadius: "12px",
-              backgroundColor: "#fff",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-              cursor: "pointer"
-            }}
-          >
+    const matchesWifi = wifiFilter ? room.wifi === true : true;
+
+    return matchesSearch && matchesWifi;
+  });
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.title}>Available Student Listings</h1>
+
+      {/* SEARCH SECTION */}
+      <div style={styles.filters}>
+        <input
+          type="text"
+          placeholder="Search by name or location..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={styles.input}
+        />
+
+        <label style={styles.checkbox}>
+          <input
+            type="checkbox"
+            checked={wifiFilter}
+            onChange={() => setWifiFilter(!wifiFilter)}
+          />
+          Only show WiFi available
+        </label>
+      </div>
+
+      {/* CARDS */}
+      <div style={styles.grid}>
+        {filteredRooms.map((room, index) => (
+          <div key={index} style={styles.card}>
             <h3>{room.name}</h3>
-            <p>{room.price}</p>
-            <p>{room.location}</p>
-            <p>WiFi: {room.wifi ? "Yes" : "No"}</p>
+            <p><b>Price:</b> {room.price}</p>
+            <p><b>Location:</b> {room.location}</p>
+            <p><b>WiFi:</b> {room.wifi ? "Available" : "Not Available"}</p>
+
+            {/* UPDATED BUTTON → REAL ROUTE */}
+            <Link to={`/listing/${index}`} style={styles.link}>
+              <button style={styles.button}>View Details</button>
+            </Link>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    padding: "40px",
+    fontFamily: "Arial",
+  },
+
+  title: {
+    marginBottom: "20px",
+  },
+
+  filters: {
+    display: "flex",
+    gap: "20px",
+    marginBottom: "20px",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+
+  input: {
+    padding: "10px",
+    width: "250px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+
+  checkbox: {
+    fontSize: "14px",
+  },
+
+  grid: {
+    display: "flex",
+    gap: "20px",
+    flexWrap: "wrap",
+  },
+
+  card: {
+    width: "250px",
+    padding: "20px",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+  },
+
+  button: {
+    marginTop: "10px",
+    padding: "8px 12px",
+    backgroundColor: "#1e3a8a",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+
+  link: {
+    textDecoration: "none",
+  },
+};
+
+export default Listings;

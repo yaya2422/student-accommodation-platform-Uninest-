@@ -1,82 +1,90 @@
-import { Link } from "react-router-dom";
-
 function Home() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section
-        style={{
-          textAlign: "center",
-          padding: "80px 20px",
-          backgroundColor: "#f5f7fb"
-        }}
-      >
-        <h1 style={{ fontSize: "3rem" }}>
-          Find Your Perfect Student Accommodation
-        </h1>
-
-        <p style={{ fontSize: "1.2rem", marginTop: "20px" }}>
-          Safe, Verified and Affordable Housing Near Your Campus
+    <div style={styles.container}>
+      <div style={styles.hero}>
+        <h1>Find Safe Student Accommodation in Nairobi</h1>
+        <p>
+          UniNest helps students find verified, affordable and secure housing near their campus.
         </p>
 
-        <Link to="/listings">
-          <button
-            style={{
-              marginTop: "30px",
-              padding: "12px 25px",
-              border: "none",
-              borderRadius: "8px",
-              backgroundColor: "#1e3a8a",
-              color: "white",
-              cursor: "pointer"
-            }}
-          >
-            Browse Listings
-          </button>
-        </Link>
-      </section>
-
-      {/* Features Section */}
-      <section style={{ padding: "50px" }}>
-        <h2 style={{ textAlign: "center" }}>
-          Why Students Choose UniNest
-        </h2>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "30px",
-            marginTop: "40px",
-            flexWrap: "wrap"
-          }}
-        >
-          <div style={cardStyle}>
-            <h3>✅ Verified Listings</h3>
-            <p>No fake landlords or scam listings.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h3>📶 Wi-Fi & Utilities</h3>
-            <p>Find accommodation with reliable internet and water.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h3>🎓 Near Campus</h3>
-            <p>Housing close to universities and colleges.</p>
-          </div>
+        <div style={styles.searchBox}>
+          <input
+            type="text"
+            placeholder="Search by location, campus or budget..."
+            style={styles.input}
+          />
+          <button style={styles.button}>Search</button>
         </div>
-      </section>
+      </div>
+
+      <div style={styles.features}>
+        <div style={styles.card}>
+          <h3>✔ Verified Listings</h3>
+          <p>No scams. All properties are checked.</p>
+        </div>
+
+        <div style={styles.card}>
+          <h3>💰 Affordable Prices</h3>
+          <p>Rooms for every student budget.</p>
+        </div>
+
+        <div style={styles.card}>
+          <h3>📍 Near Campus</h3>
+          <p>Find housing close to your university.</p>
+        </div>
+      </div>
     </div>
   );
 }
 
-const cardStyle = {
-  width: "250px",
-  padding: "20px",
-  backgroundColor: "#ffffff",
-  borderRadius: "12px",
-  boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
+const styles = {
+  container: {
+    fontFamily: "Arial",
+  },
+
+  hero: {
+    backgroundColor: "#1e3a8a",
+    color: "white",
+    padding: "80px 20px",
+    textAlign: "center",
+  },
+
+  searchBox: {
+    marginTop: "20px",
+  },
+
+  input: {
+    padding: "10px",
+    width: "250px",
+    borderRadius: "5px",
+    border: "none",
+    marginRight: "10px",
+  },
+
+  button: {
+    padding: "10px 20px",
+    backgroundColor: "#facc15",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontWeight: "bold",
+  },
+
+  features: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+    padding: "40px",
+    flexWrap: "wrap",
+  },
+
+  card: {
+    width: "250px",
+    padding: "20px",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    textAlign: "center",
+  },
 };
 
 export default Home;
