@@ -1,55 +1,32 @@
 import { useParams } from "react-router-dom";
+import rooms from "../data/rooms";
 
 function ListingDetails() {
   const { id } = useParams();
 
-  // Fake data (same as Listings page)
-  const rooms = [
-    {
-      name: "Sunrise Hostel",
-      price: "Ksh 8,000/month",
-      location: "Kileleshwa",
-      wifi: true,
-      description: "Safe and quiet hostel near campus with 24/7 security.",
-    },
-    {
-      name: "Campus View Bedsitter",
-      price: "Ksh 12,000/month",
-      location: "Kilimani",
-      wifi: true,
-      description: "Modern bedsitter with fast WiFi and water supply.",
-    },
-    {
-      name: "Green Haven Rooms",
-      price: "Ksh 6,500/month",
-      location: "Ngara",
-      wifi: false,
-      description: "Affordable rooms for students on a tight budget.",
-    },
-    {
-      name: "Royal Student Homes",
-      price: "Ksh 10,000/month",
-      location: "Westlands",
-      wifi: true,
-      description: "Premium student housing with study areas.",
-    },
-  ];
-
-  const room = rooms[id];
+  const room = rooms.find((room) => room.id === Number(id));
 
   if (!room) {
-    return <h2 style={{ padding: "20px" }}>Room not found</h2>;
+    return <h2>Listing Not Found</h2>;
   }
 
   return (
     <div style={styles.container}>
-      <h1>{room.name}</h1>
-      <p><b>Price:</b> {room.price}</p>
-      <p><b>Location:</b> {room.location}</p>
-      <p><b>WiFi:</b> {room.wifi ? "Available" : "Not Available"}</p>
-      <p style={{ marginTop: "10px" }}>{room.description}</p>
+      <img src={room.image} alt={room.name} style={styles.image} />
 
-      <button style={styles.button}>Contact Landlord</button>
+      <h1>{room.name}</h1>
+
+      <p><strong>Price:</strong> {room.price}</p>
+      <p><strong>Location:</strong> {room.location}</p>
+      <p><strong>WiFi:</strong> {room.wifi ? "Available" : "Not Available"}</p>
+
+      <p style={styles.description}>
+        {room.description}
+      </p>
+
+      <button style={styles.button}>
+        Contact Landlord
+      </button>
     </div>
   );
 }
@@ -57,15 +34,30 @@ function ListingDetails() {
 const styles = {
   container: {
     padding: "40px",
-    fontFamily: "Arial",
+    maxWidth: "800px",
+    margin: "0 auto",
   },
+
+  image: {
+    width: "100%",
+    height: "400px",
+    objectFit: "cover",
+    borderRadius: "10px",
+  },
+
+  description: {
+    marginTop: "15px",
+    lineHeight: "1.6",
+  },
+
   button: {
     marginTop: "20px",
-    padding: "10px 15px",
+    padding: "12px 20px",
     backgroundColor: "#1e3a8a",
     color: "white",
     border: "none",
     borderRadius: "5px",
+    cursor: "pointer",
   },
 };
 

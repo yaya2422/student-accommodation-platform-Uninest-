@@ -6,7 +6,9 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Listings from "./pages/Listings";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import ListingDetails from "./pages/ListingDetails";
+import AddListing from "./pages/AddListing";
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/listings" element={<Listings />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
+        <Route path="/add-listing" element={<AddListing />} />
       </Routes>
 
       <Footer />
