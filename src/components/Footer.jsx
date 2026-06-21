@@ -4,11 +4,10 @@ function Footer() {
       <h3>UniNest</h3>
 
       <p>
-        Helping students find safe and affordable accommodation
-        near their campuses.
+        Helping students find safe and affordable accommodation.
       </p>
 
-      <p>
+      <p style={{ marginTop: "10px" }}>
         © 2026 UniNest. All Rights Reserved.
       </p>
     </footer>
@@ -20,8 +19,8 @@ const styles = {
     backgroundColor: "#1e3a8a",
     color: "white",
     textAlign: "center",
-    padding: "25px",
-    marginTop: "50px",
+    padding: "30px",
+    marginTop: "60px",
   },
 };
 

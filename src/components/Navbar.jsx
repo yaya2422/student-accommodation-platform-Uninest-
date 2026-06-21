@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav style={styles.nav}>
-      <h2>UniNest</h2>
+      <h2 style={styles.logo}>UniNest</h2>
 
       <div style={styles.links}>
         <Link to="/" style={styles.link}>Home</Link>
@@ -20,20 +20,24 @@ const styles = {
   nav: {
     backgroundColor: "#1e3a8a",
     color: "white",
-    padding: "15px 30px",
+    padding: "18px 40px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+  },
+
+  logo: {
+    margin: 0,
   },
 
   links: {
     display: "flex",
-    gap: "15px",
+    gap: "20px",
   },
 
   link: {
     color: "white",
-    textDecoration: "none",
     fontWeight: "bold",
   },
 };
